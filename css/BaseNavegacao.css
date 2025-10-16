@@ -1,0 +1,79 @@
+/* RESET BÁSICO */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* Fonte base */
+}
+
+/* CORES APROXIMADAS DO MOCKUP */
+:root {
+    --cor-primaria: #008080; /* Verde Escuro, ex: do Logo/Header */
+    --cor-secundaria: #4682b4; /* Azul, ex: da seção TELEFONE */
+    --cor-fundo-login: #90ee90; /* Verde Claro para o botão LOGIN */
+    --cor-texto-claro: #ffffff;
+    --cor-texto-escuro: #333;
+    --borda-padrao: 1px solid #ddd;
+}
+
+body {
+    background-color: #f4f4f4; /* Fundo cinza claro */
+}
+
+.main-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto; /* Centraliza o contêiner principal */
+    padding-top: 20px;
+}
+
+/* --- CABEÇALHO (HEADER) --- */
+.menu-container {
+    display: flex;
+    justify-content: space-between; /* Espaça os itens: Logo, Links, Login */
+    align-items: center;
+    background-color: var(--cor-primaria);
+    padding: 10px 20px;
+    color: var(--cor-texto-claro);
+    border-radius: 5px 5px 0 0; /* Arredonda o topo */
+}
+
+.logo-box img {
+    height: 150px; /* Ajuste o tamanho do seu logo */
+    width: auto;
+    background-color: #76c776; /* Cor de fundo para o "LOGO" no Figma */
+    padding: 5px;
+    border-radius: 10%; /* Adicionado: Para deixar totalmente redondo */
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px; /* Espaço entre os links */
+}
+
+.nav-link a {
+    text-decoration: none;
+    color: var(--cor-texto-claro);
+    font-weight: bold;
+    padding: 5px 10px;
+    transition: color 0.3s;
+}
+
+.nav-link a:hover {
+    color: #e0e0e0;
+}
+
+/* Botão LOGIN */
+.login-btn {
+    text-decoration: none;
+    background-color: var(--cor-fundo-login);
+    color: var(--cor-texto-escuro);
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+    background-color: #76c776;
+}
