@@ -3,14 +3,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif; /* Fonte base */
+    font-family: Segoe UI, Arial, sans-serif; /* Fonte base */
 }
 
 /* CORES APROXIMADAS DO MOCKUP */
 :root {
-    --cor-primaria: #008080; /* Verde Escuro, ex: do Logo/Header */
-    --cor-secundaria: #4682b4; /* Azul, ex: da seção TELEFONE */
-    --cor-fundo-login: #90ee90; /* Verde Claro para o botão LOGIN */
+    --cor-primaria: #0F766E; /* Teal para Header */
+    --cor-secundaria: #0EA5A7; /* Teal claro para destaques */
+    --cor-fundo-login: #D1FAE5; /* Verde-claro suave para botão LOGIN */
     --cor-texto-claro: #ffffff;
     --cor-texto-escuro: #333;
     --borda-padrao: 1px solid #ddd;
@@ -39,11 +39,8 @@ body {
 }
 
 .logo-box img {
-    height: 150px; /* Ajuste o tamanho do seu logo */
+    height: 56px;
     width: auto;
-    background-color: #76c776; /* Cor de fundo para o "LOGO" no Figma */
-    padding: 5px;
-    border-radius: 10%; /* Adicionado: Para deixar totalmente redondo */
 }
 
 .nav-links {
