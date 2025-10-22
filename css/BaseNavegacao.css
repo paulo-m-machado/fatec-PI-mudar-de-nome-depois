@@ -41,6 +41,7 @@ body {
 .logo-box img {
     height: 56px;
     width: auto;
+    border-radius: 20;
 }
 
 .nav-links {
