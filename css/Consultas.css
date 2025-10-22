@@ -130,3 +130,12 @@ a.acao {
   text-decoration: none;
 }
 a.acao:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .list-header { flex-direction: column; align-items: stretch; }
+  .list-header h2 { margin-bottom: 6px; }
+}
+
+@media (max-width: 600px) {
+  thead th, tbody td { font-size: 13px; padding: 8px 6px; }
+}

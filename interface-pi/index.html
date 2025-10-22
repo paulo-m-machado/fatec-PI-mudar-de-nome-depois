@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinica Médica - HOME</title>
+    <meta name="theme-color" content="#0F766E">
+    <link rel="manifest" href="manifest.webmanifest">
     <link rel="stylesheet" href="../css/BaseNavegacao.css">
      <link rel="stylesheet" href="../css/AreaConteudoMain.css">
 </head>
@@ -16,13 +18,14 @@
               <img src="../img/logo.jpg" alt="Logo Micro Fisioterapia">
           </div>
             <nav class="nav-links">
-                
-                <div class="nav-link"><a href="index.html">Clínica</a></div>
-                <div class="nav-link"><a href="#">Profissional</a></div>
+                <div class="nav-link"><a href="index.html">Inicio</a></div>
+                <div class="nav-link"><a href="pacientes.html">Pacientes</a></div>
+                <div class="nav-link"><a href="anamnese.html">Anamnese</a></div>
+                <div class="nav-link"><a href="profissional.html">Profissional</a></div>
                 <div class="nav-link"><a href="consultas.html">Consultas</a></div>
-                <div class="nav-link"><a href="#">Agendamento</a></div>
+                <div class="nav-link"><a href="agenda.html">Agendamento</a></div>
             </nav>
-            <a href="#" class="login-btn">Login</a>
+            <a href="login.html" id="authAction" class="login-btn">Login</a>
         </header>
 
         <main class="content-area">
@@ -50,5 +53,7 @@
         </main>
     </div>
 
+  <script src="../js/auth.js"></script>
+  <script src="../js/pwa.js"></script>
 </body>
 </html>

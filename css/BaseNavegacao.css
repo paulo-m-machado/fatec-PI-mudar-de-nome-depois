@@ -21,8 +21,8 @@ body {
 }
 
 .main-container {
-    width: 90%;
-    max-width: 1200px;
+    width: 96%;
+    max-width: 1400px;
     margin: 0 auto; /* Centraliza o contêiner principal */
     padding-top: 20px;
 }
@@ -41,7 +41,7 @@ body {
 .logo-box img {
     height: 56px;
     width: auto;
-    border-radius: 20;
+    border-radius: 10px;
 }
 
 .nav-links {
@@ -74,4 +74,33 @@ body {
 
 .login-btn:hover {
     background-color: #76c776;
+}
+
+@media (max-width: 900px) {
+  .menu-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .logo-box img {
+    height: 48px;
+  }
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+  .login-btn {
+    align-self: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .main-container {
+    width: 94%;
+    padding-top: 12px;
+  }
+  .nav-link a {
+    padding: 8px 10px;
+  }
 }

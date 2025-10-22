@@ -2,6 +2,7 @@
 
 (function () {
   const STORAGE_KEY = 'consultas';
+  const PACIENTES_KEY = 'pacientes';
 
   const els = {};
   const state = {
@@ -28,6 +29,23 @@
 
   function uid() {
     return `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  }
+
+  function loadPacientes(){
+    try{ const raw=localStorage.getItem(PACIENTES_KEY); const arr= raw?JSON.parse(raw):[]; return Array.isArray(arr)?arr:[]; }catch{return []}
+  }
+
+  function populatePacientesSelect(){
+    const pacientes = loadPacientes();
+    if(els.paciente){
+      els.paciente.innerHTML = '';
+      pacientes.forEach(p=>{
+        const opt = document.createElement('option');
+        opt.value = p.id;
+        opt.textContent = p.nome;
+        els.paciente.appendChild(opt);
+      });
+    }
   }
 
   function parseDateTime(d, t) {
@@ -102,6 +120,7 @@
             <td>
               <a href="#" class="acao" data-action="editar" data-id="${r.id}">Editar</a>
               <a href="#" class="acao" data-action="excluir" data-id="${r.id}">Excluir</a>
+              ${r.pacienteId ? `<a href="anamnese.html?pacienteId=${r.pacienteId}" class="acao">Anamnese</a>` : ''}
             </td>
           </tr>`;
       })
@@ -128,7 +147,11 @@
 
   function fillForm(model) {
     els.consultaId.value = model.id || '';
-    els.paciente.value = model.paciente || '';
+    // Seleciona por pacienteId; se ausente, tenta por nome
+    const pacientes = loadPacientes();
+    let pid = model.pacienteId;
+    if(!pid && model.paciente){ const m = pacientes.find(p=>p.nome===model.paciente); if(m) pid = m.id; }
+    if(pid){ els.paciente.value = pid; }
     els.profissional.value = model.profissional || '';
     els.data.value = model.data || '';
     els.hora.value = model.hora || '';
@@ -142,10 +165,14 @@
 
   function handleSubmit(e) {
     e.preventDefault();
+    const pacientes = loadPacientes();
+    const pacienteId = els.paciente && els.paciente.value;
+    const paciente = (pacientes.find(p=>p.id===pacienteId)||{}).nome || '';
 
     const model = {
       id: els.consultaId.value || uid(),
-      paciente: els.paciente.value.trim(),
+      pacienteId,
+      paciente,
       profissional: els.profissional.value.trim(),
       data: els.data.value,
       hora: els.hora.value,
@@ -155,8 +182,8 @@
       createdAt: Date.now(),
     };
 
-    if (!model.paciente || !model.profissional || !model.data || !model.hora) {
-      alert('Preencha paciente, profissional, data e hora.');
+    if (!model.pacienteId || !model.profissional || !model.data || !model.hora) {
+      alert('Selecione o paciente e preencha profissional, data e hora.');
       return;
     }
 
@@ -228,6 +255,11 @@
     els.tabela = document.getElementById('tabelaConsultas');
     els.tbody = els.tabela.querySelector('tbody');
     els.thead = els.tabela.querySelector('thead');
+
+    populatePacientesSelect();
+    if(els.paciente && !els.paciente.options.length){
+      alert('Cadastre pacientes antes de criar consultas.');
+    }
 
     els.form.addEventListener('submit', handleSubmit);
     els.btnCancelar.addEventListener('click', clearForm);

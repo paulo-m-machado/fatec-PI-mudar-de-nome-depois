@@ -1,0 +1,16 @@
+/* Profissional */
+
+.prof-wrap { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+@media (max-width: 900px){ .prof-wrap { grid-template-columns: 1fr; } }
+
+.card { background: #fff; border: var(--borda-padrao); border-radius: 8px; padding: 18px; }
+.card h1 { font-size: 28px; color: var(--cor-texto-escuro); margin-bottom: 4px; }
+.subtitle { color: #64748B; margin-bottom: 12px; }
+
+.lista-especialidades { list-style: disc; margin-left: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; }
+@media (max-width: 700px){ .lista-especialidades { grid-template-columns: 1fr; } }
+.lista-especialidades li { color: #334155; }
+
+.side h2 { margin-bottom: 8px; }
+.side p { color: #475569; margin-bottom: 10px; }
+.side .btn-primary { display: inline-block; text-decoration: none; }

@@ -24,19 +24,19 @@
 }
 
 .telefone-box {
-    background-color: var(--cor-secundaria);
-    color: var(--cor-texto-claro);
-    padding: 40px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-    border-radius: 5px;
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto-claro);
+  padding: 16px 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 5px;
 }
 
 .telefone-box h2 {
-    font-size: 1.5em;
-    letter-spacing: 2px;
+  font-size: 1.25em;
+  letter-spacing: 1px;
 }
 
 /* --- BLOCOS INFERIORES --- */
@@ -60,4 +60,15 @@
     color: var(--cor-texto-escuro);
     line-height: 1.4;
     border-radius: 5px;
+}
+
+@media (max-width: 900px) {
+  .content-area { padding: 16px; }
+  .blocos-inferiores { flex-direction: column; gap: 12px; }
+}
+
+@media (max-width: 600px) {
+  .content-area { padding: 12px; }
+  .telefone-box { padding: 14px 12px; }
+  .info-rapidas-box { min-height: 180px; }
 }
