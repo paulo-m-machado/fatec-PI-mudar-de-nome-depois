@@ -70,6 +70,8 @@ body {
     border-radius: 5px;
     font-weight: bold;
     transition: background-color 0.3s;
+    border: 1px solid var(--cor-primaria);
+    margin-top: 4px;
 }
 
 .login-btn:hover {

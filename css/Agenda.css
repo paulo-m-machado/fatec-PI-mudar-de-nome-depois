@@ -45,7 +45,7 @@
 .table-wrap { overflow-x: auto; }
 
 #agendaGrid { width: 100%; border-collapse: collapse; }
-#agendaGrid thead th { text-align: center; font-size: 14px; background: #F8FAFC; border-bottom: 1px solid #E5E7EB; color: #334155; padding: 10px 8px; position: sticky; top: 0; z-index: 1; }
+#agendaGrid thead th { text-align: center; font-size: 14px; background: #F8FAFC; border-bottom: 1px solid #E5E7EB; color: #334155; padding: 10px 8px; position: sticky; top: 0; z-index: 1; white-space: pre-line; }
 #agendaGrid .times-col { width: 88px; text-align: right; padding-right: 12px; }
 
 #agendaGrid tbody td { border-bottom: 1px solid #F1F5F9; border-right: 1px solid #F8FAFC; padding: 0; height: 44px; vertical-align: top; }
@@ -58,6 +58,10 @@
 .event.agendada { background: #E0F2FE; color: #0369A1; border-color: #BAE6FD; }
 .event.concluida { background: #DCFCE7; color: #15803D; border-color: #BBF7D0; }
 .event.cancelada { background: #FEE2E2; color: #B91C1C; border-color: #FECACA; }
+
+/* Destaque para o dia atual */
+#agendaGrid thead th.today { background: #ECFEFF; color: var(--cor-primaria); border-bottom-color: #BAE6FD; }
+#agendaGrid tbody td.today { background: #F0FDFA; }
 
 @media (max-width: 900px) {
   .agenda-controls { flex-direction: column; align-items: stretch; }

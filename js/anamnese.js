@@ -19,14 +19,13 @@
     }
   }
 
-  function populatePacientesSelect(selectEl){
+  function populatePacientesDatalist(datalistEl){
     const pacientes = loadPacientes();
-    selectEl.innerHTML = '';
+    datalistEl.innerHTML = '';
     pacientes.forEach(p=>{
       const opt = document.createElement('option');
-      opt.value = p.id;
-      opt.textContent = p.nome;
-      selectEl.appendChild(opt);
+      opt.value = p.nome;
+      datalistEl.appendChild(opt);
     });
   }
 
@@ -172,7 +171,8 @@
     els.cardSelecao = document.getElementById('selecaoPacienteCard');
     els.cardForm = document.getElementById('formCard');
     els.cardList = document.getElementById('listCard');
-    els.selectPaciente = document.getElementById('selectPaciente');
+    els.selectPacienteSearch = document.getElementById('selectPacienteSearch');
+    els.pacientesList = document.getElementById('pacientesList');
     els.btnEscolherPaciente = document.getElementById('btnEscolherPaciente');
 
     function showSelecao(){
@@ -193,17 +193,22 @@
         location.href='pacientes.html';
         return;
       }
-      if(els.selectPaciente){
-        populatePacientesSelect(els.selectPaciente);
-      }
+      if(els.pacientesList){ populatePacientesDatalist(els.pacientesList); }
       if(els.btnEscolherPaciente){
         els.btnEscolherPaciente.addEventListener('click', function(){
-          const pid = els.selectPaciente && els.selectPaciente.value;
-          if(!pid){ alert('Selecione um paciente.'); return; }
-          state.pacienteId = pid;
-          // Opcional: atualizar URL
-          try { const url = new URL(location.href); url.searchParams.set('pacienteId', pid); history.replaceState(null, '', url.toString()); } catch {}
-          setPacienteTitleById(pid);
+          const typed = (els.selectPacienteSearch && els.selectPacienteSearch.value || '').trim();
+          const pacientes = loadPacientes();
+          let match = pacientes.find(p=> p.id===typed);
+          if(!match){
+            const q = typed.toLowerCase();
+            match = pacientes.find(p=> p.nome.toLowerCase()===q)
+                 || pacientes.find(p=> p.nome.toLowerCase().startsWith(q))
+                 || pacientes.find(p=> p.nome.toLowerCase().includes(q));
+          }
+          if(!match){ alert('Selecione um paciente (digite e escolha da lista).'); return; }
+          state.pacienteId = match.id;
+          try { const url = new URL(location.href); url.searchParams.set('pacienteId', match.id); history.replaceState(null, '', url.toString()); } catch {}
+          setPacienteTitleById(match.id);
           showFormList();
           render();
         });
