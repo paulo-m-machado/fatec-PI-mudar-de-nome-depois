@@ -82,10 +82,12 @@
     const tbody = els.tbody;
     const query = state.query.trim().toLowerCase();
     let rows = loadConsultas();
+    // Exibir apenas consultas com status 'Agendada'
+    rows = rows.filter(r => String((r.status || '')).toLowerCase() === 'agendada');
 
     if (query) {
       rows = rows.filter((r) =>
-        [r.paciente, r.profissional, r.tipo, r.status]
+        [r.paciente, r.tipo, r.status]
           .filter(Boolean)
           .some((v) => String(v).toLowerCase().includes(query))
       );
@@ -112,7 +114,6 @@
         return `
           <tr>
             <td>${escapeHtml(r.paciente)}</td>
-            <td>${escapeHtml(r.profissional)}</td>
             <td>${formatDate(r.data)}</td>
             <td>${formatTime(r.hora)}</td>
             <td>${escapeHtml(r.tipo)}</td>
@@ -126,7 +127,7 @@
       })
       .join('');
 
-    tbody.innerHTML = html || '<tr><td colspan="7">Nenhuma consulta encontrada.</td></tr>';
+    tbody.innerHTML = html || '<tr><td colspan="6">Nenhuma consulta encontrada.</td></tr>';
   }
 
   function escapeHtml(str) {
@@ -152,7 +153,6 @@
     let pid = model.pacienteId;
     if(!pid && model.paciente){ const m = pacientes.find(p=>p.nome===model.paciente); if(m) pid = m.id; }
     if(pid){ els.paciente.value = pid; }
-    els.profissional.value = model.profissional || '';
     els.data.value = model.data || '';
     els.hora.value = model.hora || '';
     els.tipo.value = model.tipo || 'Avaliação';
@@ -173,7 +173,6 @@
       id: els.consultaId.value || uid(),
       pacienteId,
       paciente,
-      profissional: els.profissional.value.trim(),
       data: els.data.value,
       hora: els.hora.value,
       tipo: els.tipo.value,
@@ -182,8 +181,8 @@
       createdAt: Date.now(),
     };
 
-    if (!model.pacienteId || !model.profissional || !model.data || !model.hora) {
-      alert('Selecione o paciente e preencha profissional, data e hora.');
+    if (!model.pacienteId || !model.data || !model.hora) {
+      alert('Selecione o paciente e preencha data e hora.');
       return;
     }
 
@@ -240,7 +239,6 @@
     els.form = document.getElementById('consultaForm');
     els.consultaId = document.getElementById('consultaId');
     els.paciente = document.getElementById('paciente');
-    els.profissional = document.getElementById('profissional');
     els.data = document.getElementById('data');
     els.hora = document.getElementById('hora');
     els.tipo = document.getElementById('tipo');

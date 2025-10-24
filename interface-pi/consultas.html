@@ -40,10 +40,6 @@
                 <select id="paciente" name="paciente" required></select>
               </div>
               <div class="form-field">
-                <label for="profissional">Profissional</label>
-                <input id="profissional" name="profissional" type="text" required />
-              </div>
-              <div class="form-field">
                 <label for="data">Data</label>
                 <input id="data" name="data" type="date" required />
               </div>
@@ -83,14 +79,13 @@
         <div class="consultas-list-card">
           <div class="list-header">
             <h2>Consultas</h2>
-            <input id="busca" type="search" placeholder="Buscar por paciente, profissional ou tipo" />
+            <input id="busca" type="search" placeholder="Buscar por paciente, tipo ou status" />
           </div>
           <div class="table-wrap">
             <table id="tabelaConsultas">
               <thead>
                 <tr>
                   <th data-col="paciente">Paciente</th>
-                  <th data-col="profissional">Profissional</th>
                   <th data-col="data">Data</th>
                   <th data-col="hora">Hora</th>
                   <th data-col="tipo">Tipo</th>
