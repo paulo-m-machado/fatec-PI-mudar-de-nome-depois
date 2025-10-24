@@ -119,7 +119,6 @@
             <td>${escapeHtml(r.tipo)}</td>
             <td><span class="${statusBadgeClass(r.status)}">${escapeHtml(r.status)}</span></td>
             <td>
-              <a href="#" class="acao" data-action="editar" data-id="${r.id}">Editar</a>
               <a href="#" class="acao" data-action="excluir" data-id="${r.id}">Excluir</a>
               ${r.pacienteId ? `<a href="anamnese.html?pacienteId=${r.pacienteId}" class="acao">Anamnese</a>` : ''}
             </td>
@@ -208,11 +207,6 @@
     const list = loadConsultas();
     const item = list.find((x) => x.id === id);
 
-    if (action === 'editar') {
-      if (item) fillForm(item);
-      return;
-    }
-
     if (action === 'excluir') {
       if (!confirm('Deseja realmente excluir esta consulta?')) return;
       const filtered = list.filter((x) => x.id !== id);
@@ -236,31 +230,11 @@
   }
 
   function init() {
-    els.form = document.getElementById('consultaForm');
-    els.consultaId = document.getElementById('consultaId');
-    els.paciente = document.getElementById('paciente');
-    els.data = document.getElementById('data');
-    els.hora = document.getElementById('hora');
-    els.tipo = document.getElementById('tipo');
-    els.status = document.getElementById('status');
-    els.observacoes = document.getElementById('observacoes');
-
-    els.btnSalvar = document.getElementById('btnSalvar');
-    els.btnCancelar = document.getElementById('btnCancelar');
-
     els.busca = document.getElementById('busca');
 
     els.tabela = document.getElementById('tabelaConsultas');
     els.tbody = els.tabela.querySelector('tbody');
     els.thead = els.tabela.querySelector('thead');
-
-    populatePacientesSelect();
-    if(els.paciente && !els.paciente.options.length){
-      alert('Cadastre pacientes antes de criar consultas.');
-    }
-
-    els.form.addEventListener('submit', handleSubmit);
-    els.btnCancelar.addEventListener('click', clearForm);
 
     els.busca.addEventListener('input', function () {
       state.query = this.value;

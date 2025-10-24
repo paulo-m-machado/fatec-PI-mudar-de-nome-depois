@@ -30,52 +30,6 @@
 
     <main class="content-area">
       <section class="consultas-wrap">
-        <div class="consultas-form-card">
-          <h2>Nova consulta</h2>
-          <form id="consultaForm" autocomplete="off">
-            <input type="hidden" id="consultaId" />
-            <div class="form-grid">
-              <div class="form-field">
-                <label for="paciente">Paciente</label>
-                <select id="paciente" name="paciente" required></select>
-              </div>
-              <div class="form-field">
-                <label for="data">Data</label>
-                <input id="data" name="data" type="date" required />
-              </div>
-              <div class="form-field">
-                <label for="hora">Hora</label>
-                <input id="hora" name="hora" type="time" required />
-              </div>
-              <div class="form-field">
-                <label for="tipo">Tipo</label>
-                <select id="tipo" name="tipo" required>
-                  <option value="Avaliação">Avaliação</option>
-                  <option value="Consulta">Consulta</option>
-                  <option value="Retorno">Retorno</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label for="status">Status</label>
-                <select id="status" name="status" required>
-                  <option value="Agendada">Agendada</option>
-                  <option value="Concluída">Concluída</option>
-                  <option value="Cancelada">Cancelada</option>
-                </select>
-              </div>
-              <div class="form-field form-field-full">
-                <label for="observacoes">Observações</label>
-                <textarea id="observacoes" name="observacoes" rows="3" placeholder="Opcional"></textarea>
-              </div>
-            </div>
-            <div class="form-actions">
-              <button type="submit" class="btn-primary" id="btnSalvar">Salvar</button>
-              <button type="button" class="btn-secondary" id="btnCancelar" style="display:none;">Cancelar edição</button>
-              <button type="reset" class="btn-ghost">Limpar</button>
-            </div>
-          </form>
-        </div>
-
         <div class="consultas-list-card">
           <div class="list-header">
             <h2>Consultas</h2>
