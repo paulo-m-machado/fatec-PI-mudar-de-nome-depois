@@ -32,8 +32,9 @@
           <h2>Selecionar paciente</h2>
           <div class="form-grid" style="grid-template-columns:1fr;">
             <div class="form-field">
-              <label for="selectPaciente">Paciente</label>
-              <select id="selectPaciente"></select>
+              <label for="selectPacienteSearch">Paciente</label>
+              <input id="selectPacienteSearch" type="search" list="pacientesList" placeholder="Pesquisar paciente" />
+              <datalist id="pacientesList"></datalist>
             </div>
           </div>
           <div class="form-actions">
@@ -71,7 +72,7 @@
                 <textarea id="hipoteses" name="hipoteses" rows="3"></textarea>
               </div>
               <div class="form-field form-field-full">
-                <label for="plano">Plano terapêutico</label>
+                <label for="plano">Evolução do Paciente</label>
                 <textarea id="plano" name="plano" rows="3"></textarea>
               </div>
             </div>

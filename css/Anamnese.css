@@ -6,6 +6,8 @@
   gap: 20px;
 }
 
+#selecaoPacienteCard { grid-column: 1 / -1; }
+
 @media (max-width: 900px) {
   .anamnese-wrap { grid-template-columns: 1fr; }
 }
@@ -31,6 +33,7 @@
 .form-field input,
 .form-field select,
 .form-field textarea { border: 1px solid #E5E7EB; border-radius: 6px; padding: 10px 12px; font-size: 14px; outline: none; }
+.form-field textarea { min-height: 140px; }
 .form-field input:focus,
 .form-field select:focus,
 .form-field textarea:focus { border-color: var(--cor-secundaria); box-shadow: 0 0 0 3px rgba(14,165,167,0.15); }

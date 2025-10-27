@@ -44,6 +44,12 @@
   function populatePacientesSelect(){
     const pacientes = loadPacientes();
     els.agendaPaciente.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Selecione um paciente';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    els.agendaPaciente.appendChild(placeholder);
     pacientes.forEach(p => {
       const opt = document.createElement('option');
       opt.value = p.id;
@@ -61,6 +67,12 @@
     return `${String(H).padStart(2,'0')}:${String(M).padStart(2,'0')}`;
   }
 
+  function toCssClass(s){
+    return String(s||'')
+      .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase().replace(/\s+/g,'-');
+  }
+
   function setWeekLabel(){
     const start = state.weekStart;
     const end = addDays(start, 6);
@@ -76,6 +88,8 @@
       const th = headerRow.children[i+1];
       const d = addDays(state.weekStart, i);
       th.textContent = `${days[i]}\n${String(d.getDate()).padStart(2,'0')}/${String(d.getMonth()+1).padStart(2,'0')}`;
+      const isToday = formatDateYYYYMMDD(d) === formatDateYYYYMMDD(new Date());
+      th.classList.toggle('today', isToday);
     }
   }
 
@@ -118,12 +132,14 @@
         const c = findConsultaAt(dateStr, timeStr);
         if(c){
           const ev = document.createElement('div');
-          ev.className = `event ${String(c.status||'').toLowerCase()}`;
+          ev.className = `event ${toCssClass(c.status)}`;
           const titulo = c.paciente ? c.paciente : 'Consulta';
           ev.textContent = `${titulo} • ${c.tipo||''}`;
           slot.appendChild(ev);
         }
         td.appendChild(slot);
+        // highlight today column
+        if(formatDateYYYYMMDD(dateObj) === formatDateYYYYMMDD(new Date())) td.classList.add('today');
         tr.appendChild(td);
       }
       tbody.appendChild(tr);

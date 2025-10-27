@@ -1,6 +1,6 @@
 'use strict';
 
-const CACHE_NAME = 'clinica-cache-v1';
+const CACHE_NAME = 'clinica-cache-v3';
 const ASSETS = [
   './index.html',
   './login.html',
